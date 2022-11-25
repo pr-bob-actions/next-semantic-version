@@ -1,6 +1,6 @@
 # Next semantic version action for Github Action
 
-This action use semantic-release for generate the next release version from commits message.
+This action use semantic-release for generate the next release version from commit messages.
 
 > Semantic-release is run in dry-run mode with only the commit-analyzer plugin so:
 >

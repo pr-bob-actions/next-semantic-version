@@ -1,5 +1,5 @@
-name: ""
-description: ""
+name: "next-semantic-version"
+description: "Return the next semantic version number based on commit messages"
 
 outputs:
   next-release:
