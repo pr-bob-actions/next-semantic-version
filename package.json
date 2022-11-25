@@ -3,6 +3,7 @@
   "devDependencies": {
     "@types/node": "^18.11.9",
     "@types/semantic-release": "^17.2.4",
+    "@vercel/ncc": "^0.34.0",
     "dotenv": "^16.0.3",
     "esbuild": "^0.15.15",
     "eslint": "^8.28.0",
@@ -16,6 +17,7 @@
     "semantic-release": "^19.0.5"
   },
   "scripts": {
-    "dev": "ts-node-dev --respawn --clear --rs -r dotenv/config ./src"
+    "dev": "ts-node-dev --respawn --clear --rs -r dotenv/config ./src",
+    "build": "rm -rf ./dist && ncc build ./src/index.ts --out dist/ --minify --no-source-map-register"
   }
 }

@@ -1,20 +1,28 @@
 import semantic from "semantic-release";
-import {} from "@actions/core";
+import { setOutput } from "@actions/core";
 
-const plugins = ["@semantic-release/commit-analyzer"];
 const branchName = process.env.GITHUB_REF_NAME;
 
 async function main() {
   const result = await semantic({
     dryRun: true,
     branches: [branchName ?? "main"],
-    plugins: plugins,
+    plugins: [require("@semantic-release/commit-analyzer")],
   });
 
+  let nextRelease;
+  let version;
+
   if (result == false) {
-    return;
+    nextRelease = false;
+    version = "";
+  } else {
+    nextRelease = result.nextRelease.version != "";
+    version = result.nextRelease.version;
   }
-  console.log(result.nextRelease);
+
+  setOutput("next-release", nextRelease);
+  setOutput("next-release-version", version);
 }
 
 main();
