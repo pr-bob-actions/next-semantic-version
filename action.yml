@@ -1,0 +1,15 @@
+name: ""
+description: ""
+
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      id: version
+      run: |
+        yarn dlx semantic-release --dry-run \
+          --plugins @semantic-release/commit-analyzer ./semantic-extract-version.cjs \
+          --branches ${GITHUB_REF_NAME}
+
+    - shell: bash
+      run: echo ${{steps.version.outputs.next-release}} ${{steps.version.outputs.next-release-version}}
