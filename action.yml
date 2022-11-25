@@ -15,6 +15,6 @@ runs:
     - shell: bash
       id: version
       run: |
-        yarn dlx semantic-release --dry-run \
+        yarn dlx semantic-release --dry-run --no-ci \
           --plugins @semantic-release/commit-analyzer ${{github.action_path}}/semantic-extract-version.cjs \
-          --branches ${{github.ref_name}}
+          --branches ${{github.ref_name}} ${{github.head_ref}}
