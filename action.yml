@@ -8,8 +8,8 @@ runs:
       id: version
       run: |
         yarn dlx semantic-release --dry-run \
-          --plugins @semantic-release/commit-analyzer ./semantic-extract-version.cjs \
-          --branches ${GITHUB_REF_NAME}
+          --plugins @semantic-release/commit-analyzer ${{github.action_path}}/semantic-extract-version.cjs \
+          --branches ${{github.ref_name}}
 
     - shell: bash
       run: echo ${{steps.version.outputs.next-release}} ${{steps.version.outputs.next-release-version}}
