@@ -1,6 +1,14 @@
 name: ""
 description: ""
 
+outputs:
+  next-release:
+    description: "Commit will generate a new release or not"
+    value: ${{steps.version.outputs.next-release}}
+  next-release-version:
+    description: "The next version number"
+    value: ${{steps.version.outputs.next-release-version}}
+
 runs:
   using: composite
   steps:
@@ -10,6 +18,3 @@ runs:
         yarn dlx semantic-release --dry-run \
           --plugins @semantic-release/commit-analyzer ${{github.action_path}}/semantic-extract-version.cjs \
           --branches ${{github.ref_name}}
-
-    - shell: bash
-      run: echo ${{steps.version.outputs.next-release}} ${{steps.version.outputs.next-release-version}}

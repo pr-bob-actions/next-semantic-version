@@ -7,7 +7,7 @@ module.exports = {
     fs.appendFileSync(
       OUTPUT,
       `next-release=${!!context?.nextRelease?.version}
-			next-release-version=${context?.nextRelease?.version ?? ""}`
+next-release-version=${context?.nextRelease?.version ?? ""}`
     );
   },
 };
